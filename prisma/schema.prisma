@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+ provider = "prisma-client-js"
+}
+
+datasource db {
+ provider = "postgresql"
+ url      = env("DATABASE_URL")
+}
+
+model Clinic {
+ id        String @id @default(uuid())
+ name      String
+ address   String?
+ phone     String?
+ users     User[]
+ owners    Owner[]
+ products  Product[]
+}
+
+model User {
+ id        String @id @default(uuid())
+ name      String
+ email     String @unique
+ password  String
+ role      String
+ clinicId  String
+ clinic    Clinic @relation(fields: [clinicId], references: [id])
+}
+
+model Owner {
+ id        String @id @default(uuid())
+ name      String
+ phone     String?
+ email     String?
+ clinicId  String
+ clinic    Clinic @relation(fields: [clinicId], references: [id])
+ pets      Pet[]
+}
+
+model Pet {
+ id        String @id @default(uuid())
+ name      String
+ species   String
+ breed     String?
+ birthDate DateTime?
+ ownerId   String
+ owner     Owner @relation(fields: [ownerId], references: [id])
+ medicalRecords MedicalRecord[]
+}
+
+model MedicalRecord {
+ id        String @id @default(uuid())
+ petId     String
+ pet       Pet @relation(fields: [petId], references: [id])
+ diagnosis String
+ treatment String?
+ notes     String?
+ visitDate DateTime
+}
+
+model Appointment {
+ id        String @id @default(uuid())
+ petId     String
+ vetId     String
+ date      DateTime
+ status    String
+ notes     String?
+}
+
+model Product {
+ id        String @id @default(uuid())
+ name      String
+ price     Float
+ stock     Int
+ clinicId  String
+ clinic    Clinic @relation(fields: [clinicId], references: [id])
+}
