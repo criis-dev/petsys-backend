@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authenticateToken } from "../middleware/auth.middleware";
 import {
     getPets
     , getPetById
@@ -11,33 +12,46 @@ const router = Router();
 
 /**
  * @swagger
- * /users/{id}:
+ * /pets:
  *   get:
- *     summary: Obtener usuario por ID
- *     tags: [Users]
+ *     summary: Obtener Mascotas por ID
+ *     tags: [Pets]
+ *     responses:
+ *       200:
+ *         description: Mascotas encontrado
+ *       404:
+ *         description: Mascotas no encontrado
+ */
+
+router.get("/", authenticateToken, getPets);
+
+/**
+ * @swagger
+ * /pets/{id}:
+ *   get:
+ *     summary: Obtener Mascotas por ID
+ *     tags: [Pets]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID del usuario
+ *         description: ID del Mascotas
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Usuario encontrado
+ *         description: Mascotas encontrado
  *       404:
- *         description: Usuario no encontrado
+ *         description: Mascotas no encontrado
  */
-router.get("/", getPets);
-
-router.get("/:id", getPetById);
+router.get("/:id", authenticateToken, getPetById);
 
 /**
  * @swagger
- * /users:
+ * /pets:
  *   post:
  *     summary: Crear usuario
- *     tags: [Users]
+ *     tags: [Pets]
  *     requestBody:
  *       required: true
  *       content:
@@ -55,8 +69,8 @@ router.get("/:id", getPetById);
  *       201:
  *         description: Usuario creado
  */
-router.post("/", createPet);
-router.put("/:id", updatePet);
-router.delete("/:id", deletePet);
+router.post("/", authenticateToken, createPet);
+router.put("/:id", authenticateToken, updatePet);
+router.delete("/:id", authenticateToken, deletePet);
 
 export default router;

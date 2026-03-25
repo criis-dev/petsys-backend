@@ -10,7 +10,7 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:3000/api"
+                url: "http://localhost:3000/api",
             }
         ],
         components: {
@@ -22,11 +22,11 @@ const options = {
                 }
             }
         },
-        security: [
-            {
-                bearerAuth: []
-            }
-        ]
+        // security: [
+        //     {
+        //         bearerAuth: []
+        //     }
+        // ]
     },
     apis: ["./src/routes/*.ts"]
 }
