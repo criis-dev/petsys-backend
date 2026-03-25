@@ -1,2 +1,2 @@
 # petsys-backend
-BackEnd de sistema para la administración de vetarinarias, desarrollado con Express
+BackEnd de sistema para la administración de vetarinarias. Desarrollado con Express
