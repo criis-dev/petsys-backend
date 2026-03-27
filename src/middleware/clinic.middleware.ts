@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { prisma } from "../prisma/prismaClient";
+import { prisma } from "../config/prismaClient";
 
 export const validateClinic = (req: Request, res: Response, next: NextFunction) => {
 

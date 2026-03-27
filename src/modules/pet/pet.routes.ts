@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { authenticateToken } from "../middleware/auth.middleware";
+import { authenticateToken } from "../../middleware/auth.middleware";
 import {
     getPets
     , getPetById
     , createPet
     , updatePet
     , deletePet
-} from "../controllers/pet.controller";
+} from "./pet.controller";
 
 const router = Router();
 

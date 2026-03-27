@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { authenticateToken } from "../middleware/auth.middleware";
-import { getAppointments, getAppointmentById, createAppointment, updateAppointment, deleteAppointment } from "../controllers/appointment.controller";
+import { authenticateToken } from "../../middleware/auth.middleware";
+import { getAppointments, getAppointmentById, createAppointment, updateAppointment, deleteAppointment } from "./appointment.controller";
 
 const router = Router();
 

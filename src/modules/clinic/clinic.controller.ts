@@ -1,12 +1,23 @@
 import { Request, Response } from "express";
-import { prisma } from "../prisma/prismaClient";
+import { prisma } from "../../config/prismaClient";
 
 export const getClinics = async (req: Request, res: Response) => {
   try {
     const clinics = await prisma.clinic.findMany();
-    res.status(200).json({ success: true, data: clinics });
+
+    res.status(200).json({
+      success: true,
+      data: clinics
+    });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error fetching clinics" });
+
+    console.error("ERROR GET CLINICS:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Error fetching clinics",
+      error: String(error)
+    });
   }
 };
 

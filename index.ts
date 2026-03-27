@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { prisma } from "./prisma/prismaClient.ts";
+import { prisma } from "./src/config/prismaClient.ts";
 
 dotenv.config();
 

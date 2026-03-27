@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { authenticateToken } from "../middleware/auth.middleware";
-import { getClinics, getClinicById, createClinic, updateClinic, deleteClinic } from "../controllers/clinic.controller";
-import { validateClinic, validateClinicId, clinicExists } from "../middleware/clinic.middleware";
+import { authenticateToken } from "../../middleware/auth.middleware";
+import { getClinics, getClinicById, createClinic, updateClinic, deleteClinic } from "./clinic.controller";
+import { validateClinic, validateClinicId, clinicExists } from "../../middleware/clinic.middleware";
 
 const router = Router();
 

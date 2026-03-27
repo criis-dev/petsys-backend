@@ -1,55 +1,55 @@
 import { Router } from "express";
-import { authenticateToken } from "../middleware/auth.middleware";
-import { getUsers, getUserById, createUser, updateUser, deleteUser } from "../controllers/user.controller";
+import { authenticateToken } from "../../middleware/auth.middleware";
+import { getOwners, getOwnerById, createOwner, updateOwner, deleteOwner } from "./owner.controller";
 
 const router = Router();
 
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: Endpoints para gestionar usuarios
+ *   name: Owners
+ *   description: Endpoints para gestionar dueños
  */
 
 /**
  * @swagger
- * /users:
+ * /owners:
  *   get:
- *     summary: Obtener todos los usuarios
- *     tags: [Users]
+ *     summary: Obtener todos los dueños
+ *     tags: [Owners]
  *     responses:
  *       200:
- *         description: Lista de usuarios obtenida exitosamente
+ *         description: Lista de dueños obtenida exitosamente
  */
-router.get("/", authenticateToken, getUsers);
+router.get("/", authenticateToken, getOwners);
 
 /**
  * @swagger
- * /users/{id}:
+ * /owners/{id}:
  *   get:
- *     summary: Obtener un usuario por ID
- *     tags: [Users]
+ *     summary: Obtener un dueño por ID
+ *     tags: [Owners]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID del usuario
+ *         description: ID del dueño
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Usuario encontrado
+ *         description: Dueño encontrado
  *       404:
- *         description: Usuario no encontrado
+ *         description: Dueño no encontrado
  */
-router.get("/:id", authenticateToken, getUserById);
+router.get("/:id", authenticateToken, getOwnerById);
 
 /**
  * @swagger
- * /users:
+ * /owners:
  *   post:
- *     summary: Crear un nuevo usuario
- *     tags: [Users]
+ *     summary: Crear un nuevo dueño
+ *     tags: [Owners]
  *     requestBody:
  *       required: true
  *       content:
@@ -59,31 +59,29 @@ router.get("/:id", authenticateToken, getUserById);
  *             properties:
  *               name:
  *                 type: string
+ *               phone:
+ *                 type: string
  *               email:
- *                 type: string
- *               password:
- *                 type: string
- *               role:
  *                 type: string
  *               clinicId:
  *                 type: string
  *     responses:
  *       201:
- *         description: Usuario creado exitosamente
+ *         description: Dueño creado exitosamente
  */
-router.post("/", authenticateToken, createUser);
+router.post("/", authenticateToken, createOwner);
 
 /**
  * @swagger
- * /users/{id}:
+ * /owners/{id}:
  *   put:
- *     summary: Actualizar un usuario existente
- *     tags: [Users]
+ *     summary: Actualizar un dueño existente
+ *     tags: [Owners]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID del usuario
+ *         description: ID del dueño
  *         schema:
  *           type: string
  *     requestBody:
@@ -95,37 +93,35 @@ router.post("/", authenticateToken, createUser);
  *             properties:
  *               name:
  *                 type: string
+ *               phone:
+ *                 type: string
  *               email:
- *                 type: string
- *               password:
- *                 type: string
- *               role:
  *                 type: string
  *               clinicId:
  *                 type: string
  *     responses:
  *       200:
- *         description: Usuario actualizado exitosamente
+ *         description: Dueño actualizado exitosamente
  */
-router.put("/:id", authenticateToken, updateUser);
+router.put("/:id", authenticateToken, updateOwner);
 
 /**
  * @swagger
- * /users/{id}:
+ * /owners/{id}:
  *   delete:
- *     summary: Eliminar un usuario
- *     tags: [Users]
+ *     summary: Eliminar un dueño
+ *     tags: [Owners]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID del usuario
+ *         description: ID del dueño
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Usuario eliminado exitosamente
+ *         description: Dueño eliminado exitosamente
  */
-router.delete("/:id", authenticateToken, deleteUser);
+router.delete("/:id", authenticateToken, deleteOwner);
 
 export default router;
