@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { authenticateToken } from "../middleware/auth.middleware";
 import { getClinics, getClinicById, createClinic, updateClinic, deleteClinic } from "../controllers/clinic.controller";
+import { validateClinic, validateClinicId, clinicExists } from "../middleware/clinic.middleware";
 
 const router = Router();
 
@@ -21,6 +22,7 @@ const router = Router();
  *       200:
  *         description: Lista de clínicas obtenida exitosamente
  */
+// GET all
 router.get("/", authenticateToken, getClinics);
 
 /**
@@ -42,6 +44,7 @@ router.get("/", authenticateToken, getClinics);
  *       404:
  *         description: Clínica no encontrada
  */
+// GET by ID
 router.get("/:id", authenticateToken, getClinicById);
 
 /**
@@ -67,7 +70,8 @@ router.get("/:id", authenticateToken, getClinicById);
  *       201:
  *         description: Clínica creada exitosamente
  */
-router.post("/", authenticateToken, createClinic);
+// CREATE
+router.post("/", authenticateToken, validateClinic, createClinic);
 
 /**
  * @swagger
@@ -99,7 +103,8 @@ router.post("/", authenticateToken, createClinic);
  *       200:
  *         description: Clínica actualizada exitosamente
  */
-router.put("/:id", authenticateToken, updateClinic);
+// UPDATE
+router.put("/:id", authenticateToken, validateClinicId, clinicExists, validateClinic, updateClinic);
 
 /**
  * @swagger
@@ -118,6 +123,7 @@ router.put("/:id", authenticateToken, updateClinic);
  *       200:
  *         description: Clínica eliminada exitosamente
  */
-router.delete("/:id", authenticateToken, deleteClinic);
+//  DELETE
+router.delete("/:id", authenticateToken, validateClinicId, clinicExists, deleteClinic);
 
 export default router;
