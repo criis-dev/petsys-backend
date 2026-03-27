@@ -25,10 +25,19 @@ export const getClinicById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const clinic = await prisma.clinic.findUnique({ where: { id } });
-    if (!clinic) return res.status(404).json({ success: false, message: "Clinic not found" });
+
+    if (!clinic) return res.status(404).json({
+      success: false,
+      message: "Clinic not found"
+    });
+
     res.status(200).json({ success: true, data: clinic });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error fetching clinic" });
+    res.status(500).json({
+      success: false,
+      message: "Error fetching clinic",
+      error: String(error)
+    });
   }
 };
 
@@ -36,9 +45,14 @@ export const createClinic = async (req: Request, res: Response) => {
   try {
     const { name, address, phone } = req.body;
     const clinic = await prisma.clinic.create({ data: { name, address, phone } });
+
     res.status(201).json({ success: true, data: clinic });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error creating clinic" });
+    res.status(500).json({
+      success: false,
+      message: "Error creating clinic",
+      error: String(error)
+    });
   }
 };
 
@@ -46,10 +60,22 @@ export const updateClinic = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { name, address, phone } = req.body;
-    const clinic = await prisma.clinic.update({ where: { id }, data: { name, address, phone } });
+    const clinic = await prisma.clinic.update({
+      where: { id },
+      data: {
+        name,
+        address,
+        phone
+      }
+    });
+
     res.status(200).json({ success: true, data: clinic });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error updating clinic" });
+    res.status(500).json({
+      success: false,
+      message: "Error updating clinic",
+      error: String(error)
+    });
   }
 };
 
