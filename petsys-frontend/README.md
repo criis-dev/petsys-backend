@@ -64,3 +64,15 @@ Ejecuta ESLint para analizar el código fuente en busca de advertencias, errores
 *   **Vite**: 8.2.1
 *   **TypeScript**: 6.0.3
 *   **ESLint**: 8.67.0
+
+## Stack inicial de Shadcn Admin:
+
+*   **React**: 19.2.5
+*   **Vite**: 8.0.8
+*   **TypeScript**: 6.0.3
+*   **Tailwind**: 4.2.2
+*   **TanStack**
+*   **Radix UI**
+*   **Axios**
+*   **Zod**
+*   **Zustand**
