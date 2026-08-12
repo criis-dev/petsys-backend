@@ -54,3 +54,13 @@ Sirve de forma local la compilación de producción generada en la carpeta `dist
 
 ### `npm run lint`
 Ejecuta ESLint para analizar el código fuente en busca de advertencias, errores de estilo o problemas potenciales de sintaxis.
+
+## Stack inicial del proyecto:
+
+*   **Node**: 24.11.1
+*   **npm**: 11.6.2
+*   **React**: 19.2.8
+*   **React DOM**: 19.2.8
+*   **Vite**: 8.2.1
+*   **TypeScript**: 6.0.3
+*   **ESLint**: 8.67.0
